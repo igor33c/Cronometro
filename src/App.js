@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import {Button} from './Components/Button';
+import { Timer
+ } from './Components/Timer';
+import './styles/global.css'
+export function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='flex justify-center bg-gray-700 mx-10 my-5 text-center '>
+      <h1 className="text-violet-500">
+        <Timer/> 
+        <Button/>
+      </h1>
     </div>
   );
 }
 
-export default App;
+
