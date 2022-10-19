@@ -7,7 +7,7 @@ function onClickStart(){
 }
 export function Button(){
     return(
-        <div className="border rounded-sm border-lime-500 mt-10 mb-5 px-3 py-3">
+        <div className="ml-10 mr-10 border rounded-sm border-lime-500 mt-10 mb-10 px-3 py-3">
             <button className="ml-1 bg-red-500 hover:bg-red-700
                 text-white px-4 py-2 rounded-md"
                 onClick={() => onClickStop()}
