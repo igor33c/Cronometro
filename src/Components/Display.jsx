@@ -7,8 +7,7 @@ export function Display (){
         setMili(0)
         setSec (0)
         setMin (0)
-        setHour (0)
-        console.log('stop count')
+        setHour (0)        
     }
     
     const [mili, setMili] = useState(321)
@@ -17,8 +16,26 @@ export function Display (){
     const [hour, setHour] = useState(12)
 
     
-    const childToParent = () => {
-        alert('chilt to parent  ')
+    function childToParent (action)  {
+        
+        if (action === 'zerar'){
+            close()
+        }
+        if (action === 'start'){
+            ///criar funcao cronometro
+            ///contar()
+            setMili(231)
+            setSec (12)
+            setMin (32)
+            setHour (1)
+        }
+        if (action === 'stop'){
+            console.log('stop')        
+        } 
+    }
+    const childToParent2 = () => {
+        close()
+        alert('starting...')
     }
     
     return(
