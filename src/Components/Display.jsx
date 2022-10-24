@@ -25,11 +25,6 @@ export function Display (){
   ,[start])
 
 
-const [mili, setMili] = useState(0)
-const [sec, setSec] = useState(0)
-const [min, setMin] = useState(0)
-const [hour, setHour] = useState(0)
-
 function starting(){
     setStart(true)
 }
@@ -38,8 +33,9 @@ function stoping(){
 }
 function zering(){
     ///zering kkkk
-    setStart(0)
-    setMili(0)
+    setTime(0)  
+    setStart(false)
+    
 }
 function childToParent (action)  {
     
@@ -60,9 +56,7 @@ function childToParent (action)  {
 ///<button onClick={() => close()}>teste</button>
 return(
     <div>
-        <div className="flex text-center justify-center mt-10">
-            
-            
+        <div className="flex text-center justify-center mt-10">           
             <div className="ml-1 mr-1">
                 <span className="text-5xl">
                 {("0" + Math.floor((time / 60000) % 60)).slice(-2)}
@@ -78,7 +72,7 @@ return(
             <div className="ml-1 mr-1">
                 <span className="text-5xl">
                     {console.log(time)}
-                {(setMili + (time / 10) % 1000).slice(-2)}</span>
+                {("0" + (time / 10) % 1000).slice(-2)}</span>
             </div>
         </div> 
         <Button childToParent={childToParent}/>  
