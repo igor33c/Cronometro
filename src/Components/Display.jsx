@@ -1,76 +1,87 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "./Button"
 
 
+
 export function Display (){
-    function close(){
-        setMili(0)
-        setSec (0)
-        setMin (0)
-        setHour (0)        
-    }
-    
-    const [mili, setMili] = useState(321)
-    const [sec, setSec] = useState(8)
-    const [min, setMin] = useState(3)
-    const [hour, setHour] = useState(12)
 
+  const [time, setTime] = useState(0)
+  const [start, setStart] = useState(false)
+
+  useEffect(() =>{
+    let interval = null
+    if (start){
+        interval = setInterval(() => {            
+            setTime(prevTime => prevTime+10)
+            
+        },10)    
+    }
+    else{
+        clearInterval(interval)
+    }
+
+    return() => clearInterval(interval)
+  }
+  ,[start])
+
+
+const [mili, setMili] = useState(0)
+const [sec, setSec] = useState(0)
+const [min, setMin] = useState(0)
+const [hour, setHour] = useState(0)
+
+function starting(){
+    setStart(true)
+}
+function stoping(){
+    setStart(false)
+}
+function zering(){
+    ///zering kkkk
+    setStart(0)
+    setMili(0)
+}
+function childToParent (action)  {
     
-    function childToParent (action)  {
+    if (action === 'zerar'){
+        zering()
+    }
+    if (action === 'start'){
+        ///criar funcao cronometro
+        ///contar()
+        starting()
         
-        if (action === 'zerar'){
-            close()
-        }
-        if (action === 'start'){
-            ///criar funcao cronometro
-            ///contar()
-            setMili(231)
-            setSec (12)
-            setMin (32)
-            setHour (1)
-        }
-        if (action === 'stop'){
-            console.log('stop')        
-        } 
     }
-    const childToParent2 = () => {
-        close()
-        alert('starting...')
-    }
-    
-    return(
-        <div>
-            <div className="flex text-center justify-center mt-10">
-                <button onClick={() => close()}>teste</button>
-                <div className="ml-1 mr-1">
-                    <span className="text-5xl">{
-                        hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
-                                               }</span>
-                    <span className="text-5xl"> :</span>
-                </div>
+    if (action === 'stop'){
+        stoping()       
+    } 
+}
 
-                <div className="ml-1 mr-1">
-                    <span className="text-5xl">{
-                        min.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
-                    }</span>
-                    <span className="text-5xl"> :</span>
-                </div>
-                <div className="ml-1 mr-1">
-                    <span className="text-5xl">
-                    {
-                        sec.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
-                    }   
-                    </span>
-                    <span className="text-5xl"> :</span>
-                </div>
-                <div className="ml-1 mr-1">
-                    <span className="text-5xl">
-                    {
-                        mili.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
-                    }</span>
-                </div>
-            </div> 
-            <Button childToParent={childToParent}/>  
-        </div>
+///<button onClick={() => close()}>teste</button>
+return(
+    <div>
+        <div className="flex text-center justify-center mt-10">
+            
+            
+            <div className="ml-1 mr-1">
+                <span className="text-5xl">
+                {("0" + Math.floor((time / 60000) % 60)).slice(-2)}
+                </span>
+                <span className="text-5xl"> :</span>
+            </div>
+            <div className="ml-1 mr-1">
+                <span className="text-5xl">
+                {("0" + Math.floor((time / 1000) % 60)).slice(-2)}
+                </span>
+                <span className="text-5xl"> :</span>
+            </div>
+            <div className="ml-1 mr-1">
+                <span className="text-5xl">
+                    {console.log(time)}
+                {(setMili + (time / 10) % 1000).slice(-2)}</span>
+            </div>
+        </div> 
+        <Button childToParent={childToParent}/>  
+    </div>
     )
 }
