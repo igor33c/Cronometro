@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "./Button"
 
-
-
 export function Display (){
-
   const [time, setTime] = useState(0)
   const [start, setStart] = useState(false)
 
@@ -31,19 +28,16 @@ function starting(){
 function stoping(){
     setStart(false)
 }
-function zering(){
-    ///zering kkkk
+function zering(){    
     setTime(0)  
     setStart(false)
     
 }
-function childToParent (action)  {
-    
+function childToParent (action)  {    
     if (action === 'zerar'){
         zering()
     }
-    if (action === 'start'){
-        ///criar funcao cronometro
+    if (action === 'start'){        
         ///contar()
         starting()
         
@@ -56,7 +50,7 @@ function childToParent (action)  {
 ///<button onClick={() => close()}>teste</button>
 return(
     <div>
-        <div className="flex text-center justify-center mt-10">           
+        <div className="max-w-md flex text-center justify-center mt-10">           
             <div className="ml-1 mr-1">
                 <span className="text-5xl">
                 {("0" + Math.floor((time / 60000) % 60)).slice(-2)}
@@ -71,7 +65,7 @@ return(
             </div>
             <div className="ml-1 mr-1">
                 <span className="text-5xl">
-                    {console.log(time)}
+                    {console.log(time/3600000)}
                 {("0" + (time / 10) % 1000).slice(-2)}</span>
             </div>
         </div> 
