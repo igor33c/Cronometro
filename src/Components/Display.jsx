@@ -50,7 +50,14 @@ function childToParent (action)  {
 ///<button onClick={() => close()}>teste</button>
 return(
     <div>
-        <div className="max-w-md flex text-center justify-center mt-10">           
+        <div className="max-w-md flex text-center justify-center mt-10">  
+
+            <div className="ml-1 mr-1">
+                <span className="text-5xl">
+                {("0" + Math.floor((time / 3600000) % 60)).slice(-2)}
+                </span>
+                <span className="text-5xl"> :</span>
+            </div>         
             <div className="ml-1 mr-1">
                 <span className="text-5xl">
                 {("0" + Math.floor((time / 60000) % 60)).slice(-2)}
